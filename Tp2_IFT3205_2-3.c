@@ -17,26 +17,15 @@
 
 #include "FonctionDemo2.h"
 
-/*------------------------------------------------*/
-/* DEFINITIONS -----------------------------------*/
-/*------------------------------------------------*/
+
 #define NAME_VISUALISER "display "
 #define NAME_IMG_IN1  "UdM_1"
-#define NAME_IMG_OUT1 "image-TP2-1-1"
-#define NAME_IMG_OUT2 "image-TP2-1-2"
-
+#define NAME_IMG_IN2  "UdM_2"
+#define NAME_IMG_OUT1 "image-TP2-4-1"
+#define NAME_IMG_OUT2 "image-TP2-4-2"
 /*------------------------------------------------*/
 /* PROTOTYPE DE FONCTIONS  -----------------------*/
 /*------------------------------------------------*/
-void PreFFT_Translation(float** Matrix, int length, int width) {
-  int x, y;
-  for (x = 0; x < length; x++)
-    for (y = 0; y < width; y++)
-      if ((x + y) % 2 == 1)
-        Matrix[x][y] = -Matrix[x][y];
-}
-
-
 void rotateMatrix(float **src, float **dest, float angle, int length, int width)
 {
   //methode du plus proche voisin
@@ -91,7 +80,7 @@ int main(int argc, char **argv)
 
   for (angle = -PI / 16; angle < PI / 16; angle += 0.005)
   {
-    zeroMatrix(outputMatrix, length, width);
+    err = 0.0;
     rotateMatrix(inputMatrix, outputMatrix, angle, length, width);
     for (int i = 0; i < length; i++)
     {
